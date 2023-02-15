@@ -38,6 +38,10 @@ func (b *bot) setChatBot(cb *uchatbot.ChatBot) {
 	b.ChatBot = cb
 }
 
+func (b *bot) setTelegramBot(tgBot *tb.Bot) {
+	b.TgBot = tgBot
+}
+
 func main() {
 	cfg := config{}
 	if err := swissknife.ParseStructFromJSONFile(configFilePath, &cfg); err != nil {
@@ -67,8 +71,6 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	b.setChatBot(cb)
-
 	// setup telegram bot
 	tgBot, err := tb.NewBot(tb.Settings{
 		Token:  cfg.Messengers.Telegram.BotToken,
@@ -78,9 +80,13 @@ func main() {
 		log.Fatalf("create tg bot: %v", err)
 	}
 
+	b.setChatBot(cb)
+	b.setTelegramBot(tgBot)
+
 	tgBot.Handle(tb.OnText, b.onTelegramMessage)
 
 	go tgBot.Start()
+
 	log.Println("bot started")
 	swissknife.RunInBackground()
 }
@@ -116,8 +122,11 @@ func (b *bot) onChannelMessage(m structs.WsChannelMessage) {
 }
 
 func (b *bot) sendToTelegram(chatID int64, nickname string, message string) error {
-	// TODO
-	return nil
+	_, err := b.TgBot.Send(
+		tb.ChatID(chatID),
+		fmt.Sprintf("%s: %s", nickname, message),
+	)
+	return err
 }
 
 func (b *bot) sendToUtopia(channelID string, nickname string, message string) error {

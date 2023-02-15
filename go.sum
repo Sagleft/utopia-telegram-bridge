@@ -64,6 +64,8 @@ github.com/Sagleft/uchatbot-engine v1.5.2 h1:/Bq7+TU2OzJZtcrnonkAgiNsHTome6UprbV
 github.com/Sagleft/uchatbot-engine v1.5.2/go.mod h1:QrSY84Q8qmCaJdw7gt+UP12RWdFfVBO3JcI5tVTEZIU=
 github.com/Sagleft/utopialib-go/v2 v2.3.0 h1:bVgspeCLYI/7PIqnTJknXW8bYF4IXLLCzVk2QkTrocA=
 github.com/Sagleft/utopialib-go/v2 v2.3.0/go.mod h1:9HuTLrcyVlaNIW3Vw4FCMrlOFt2fJ0ZI8WBOk5+2e6M=
+github.com/Syfaro/telegram-bot-api v4.6.4+incompatible h1:O30CgxZ/BuHpWfONoGirTIU7XUWhz6NPelk80FxipDI=
+github.com/Syfaro/telegram-bot-api v4.6.4+incompatible/go.mod h1:eC/lEGT3gOB9RowMYsLx0YH1U8a/dEjceHY3M//ej88=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf/go.mod h1:ybxpYRFXyAe+OPACYpWeL0wqObRcbAqCMya13uyzqw0=
@@ -375,6 +377,8 @@ github.com/stretchr/testify v1.7.5/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
 github.com/stretchr/testify v1.8.1 h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk=
 github.com/subosito/gotenv v1.4.1/go.mod h1:ayKnFf/c6rvx/2iiLrJUk1e6plDbT3edrFNGqEflhK0=
+github.com/technoweenie/multipartstreamer v1.0.1 h1:XRztA5MXiR1TIRHxH2uNxXxaIkKQDeX7m2XsSOlQEnM=
+github.com/technoweenie/multipartstreamer v1.0.1/go.mod h1:jNVxdtShOxzAsukZwTSw6MDx5eUJoiEBsSvzDU9uzog=
 github.com/tv42/httpunix v0.0.0-20150427012821-b75d8614f926/go.mod h1:9ESjWnEqriFuLhtthL60Sar/7RFoluCcXsuvEwTV5KM=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

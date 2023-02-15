@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Sagleft/uchatbot-engine"
 	utopiago "github.com/Sagleft/utopialib-go/v2"
+	tb "gopkg.in/telebot.v3"
 )
 
 type config struct {
@@ -31,5 +32,6 @@ type bridges struct {
 
 type bot struct {
 	ChatBot *uchatbot.ChatBot
+	TgBot   *tb.Bot
 	Bridges bridges
 }
