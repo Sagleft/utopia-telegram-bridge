@@ -5,8 +5,8 @@ import (
 )
 
 type config struct {
-	Messengers messengers `json:"messengers"`
-	Bridges    []bridge   `json:"bridges"`
+	Messengers messengers     `json:"messengers"`
+	Bridges    []bridgeConfig `json:"bridges"`
 }
 
 type messengers struct {
@@ -14,7 +14,7 @@ type messengers struct {
 	Telegram telegramConfig  `json:"telegram"`
 }
 
-type bridge struct {
+type bridgeConfig struct {
 	UtopiaChannelID string `json:"utopiaChannelID"`
 	TelegramChatID  int64  `json:"telegramChatID"`
 }
@@ -23,11 +23,11 @@ type telegramConfig struct {
 	BotToken string `json:"botToken"`
 }
 
-type redirector struct {
+type bridges struct {
 	UtopiaToTelegram map[string]int64
 	TelegramToUtopia map[int64]string
 }
 
 type bot struct {
-	Redirects redirector
+	Bridges bridges
 }

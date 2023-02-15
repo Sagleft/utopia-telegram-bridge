@@ -40,3 +40,16 @@ func onPrivateChannelMessage(m structs.WsChannelMessage) {
 func onError(err error) {
 	color.Red(err.Error())
 }
+
+func getTelegramNickname(user *tb.User) string {
+	nickname := user.FirstName + " " + user.LastName
+	if nickname != " " {
+		return nickname
+	}
+
+	if user.Username != "" {
+		return user.Username
+	}
+
+	return "anonymos"
+}

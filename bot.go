@@ -19,15 +19,15 @@ const (
 
 func newBot(cfg config) *bot {
 	b := &bot{
-		Redirects: redirector{
+		Bridges: bridges{
 			UtopiaToTelegram: make(map[string]int64),
 			TelegramToUtopia: make(map[int64]string),
 		},
 	}
 
 	for _, r := range cfg.Bridges {
-		b.Redirects.UtopiaToTelegram[r.UtopiaChannelID] = r.TelegramChatID
-		b.Redirects.TelegramToUtopia[r.TelegramChatID] = r.UtopiaChannelID
+		b.Bridges.UtopiaToTelegram[r.UtopiaChannelID] = r.TelegramChatID
+		b.Bridges.TelegramToUtopia[r.TelegramChatID] = r.UtopiaChannelID
 	}
 
 	return b
@@ -71,9 +71,37 @@ func main() {
 	if err != nil {
 		log.Fatalf("create tg bot: %v", err)
 	}
-	go tgBot.Start()
 
+	tgBot.Handle(tb.OnText, b.onTelegramMessage)
+
+	go tgBot.Start()
 	swissknife.RunInBackground()
+}
+
+func (b *bot) getTelegramBridge(chatID int64) (string, bool) {
+	br, isExists := b.Bridges.TelegramToUtopia[chatID]
+	return br, isExists
+}
+
+func (b *bot) onTelegramMessage(c tb.Context) error {
+	var (
+		user   = c.Sender()
+		text   = c.Text()
+		chatID = c.Chat().ID
+	)
+
+	uChannelID, isExists := b.getTelegramBridge(chatID)
+	if !isExists {
+		log.Printf("unknown telegram chat ID %v, bridge not found", chatID)
+		return nil
+	}
+
+	nickname := getTelegramNickname(user)
+	if err := b.sendToUtopia(uChannelID, nickname, text); err != nil {
+		return fmt.Errorf("send message to utopia: %w", err)
+	}
+
+	return nil
 }
 
 func (b *bot) onChannelMessage(m structs.WsChannelMessage) {
