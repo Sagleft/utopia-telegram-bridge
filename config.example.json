@@ -1,7 +1,7 @@
 {
     "messengers": {
         "utopia": {
-            "host": "",
+            "host": "127.0.0.1",
             "token": "",
             "port": 22824,
             "wsport": 25000
@@ -10,10 +10,10 @@
             "botToken": ""
         }
     },
-    "redirects": [
+    "bridges": [
         {
-            "utopiaChannelID": "",
-            "telegramChatID": 0
+            "utopiaChannelID": "D7F238C7CEFDA237D14E6B67CF6511F5",
+            "telegramChatID": -1001465854854
         }
     ]
 }
