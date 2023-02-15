@@ -1,15 +1,12 @@
 package main
 
 import (
-	"github.com/Sagleft/uchatbot-engine"
 	utopiago "github.com/Sagleft/utopialib-go/v2"
 )
 
 type config struct {
-	Utopia   utopiago.Config `json:"utopia"`
-	Telegram telegramConfig  `json:"telegram"`
-
-	Chats     []uchatbot.Chat `json:"chats"`
+	Utopia    utopiago.Config `json:"utopia"`
+	Telegram  telegramConfig  `json:"telegram"`
 	Redirects []redirect      `json:"redirects"`
 }
 

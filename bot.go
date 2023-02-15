@@ -43,9 +43,14 @@ func main() {
 	b := newBot(cfg)
 
 	// setup utopia bot
+	chats := []uchatbot.Chat{}
+	for _, r := range cfg.Redirects {
+		chats = append(chats, uchatbot.Chat{ID: r.UtopiaChannelID})
+	}
+
 	_, err := uchatbot.NewChatBot(uchatbot.ChatBotData{
 		Config: cfg.Utopia,
-		Chats:  cfg.Chats,
+		Chats:  chats,
 		Callbacks: uchatbot.ChatBotCallbacks{
 			OnContactMessage:        onContactMessage,
 			OnChannelMessage:        b.onChannelMessage,
