@@ -75,6 +75,7 @@ func main() {
 	tgBot.Handle(tb.OnText, b.onTelegramMessage)
 
 	go tgBot.Start()
+	log.Println("bot started")
 	swissknife.RunInBackground()
 }
 
