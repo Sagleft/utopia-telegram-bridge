@@ -5,12 +5,16 @@ import (
 )
 
 type config struct {
-	Utopia    utopiago.Config `json:"utopia"`
-	Telegram  telegramConfig  `json:"telegram"`
-	Redirects []redirect      `json:"redirects"`
+	Messengers messengers `json:"messengers"`
+	Bridges    []bridge   `json:"bridges"`
 }
 
-type redirect struct {
+type messengers struct {
+	Utopia   utopiago.Config `json:"utopia"`
+	Telegram telegramConfig  `json:"telegram"`
+}
+
+type bridge struct {
 	UtopiaChannelID string `json:"utopiaChannelID"`
 	TelegramChatID  int64  `json:"telegramChatID"`
 }

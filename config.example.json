@@ -1,1 +1,19 @@
-{}
+{
+    "messengers": {
+        "utopia": {
+            "host": "",
+            "token": "",
+            "port": 22824,
+            "wsport": 25000
+        },
+        "telegram": {
+            "botToken": ""
+        }
+    },
+    "redirects": [
+        {
+            "utopiaChannelID": "",
+            "telegramChatID": 0
+        }
+    ]
+}

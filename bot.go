@@ -25,7 +25,7 @@ func newBot(cfg config) *bot {
 		},
 	}
 
-	for _, r := range cfg.Redirects {
+	for _, r := range cfg.Bridges {
 		b.Redirects.UtopiaToTelegram[r.UtopiaChannelID] = r.TelegramChatID
 		b.Redirects.TelegramToUtopia[r.TelegramChatID] = r.UtopiaChannelID
 	}
@@ -44,12 +44,12 @@ func main() {
 
 	// setup utopia bot
 	chats := []uchatbot.Chat{}
-	for _, r := range cfg.Redirects {
+	for _, r := range cfg.Bridges {
 		chats = append(chats, uchatbot.Chat{ID: r.UtopiaChannelID})
 	}
 
 	_, err := uchatbot.NewChatBot(uchatbot.ChatBotData{
-		Config: cfg.Utopia,
+		Config: cfg.Messengers.Utopia,
 		Chats:  chats,
 		Callbacks: uchatbot.ChatBotCallbacks{
 			OnContactMessage:        onContactMessage,
@@ -65,7 +65,7 @@ func main() {
 
 	// setup telegram bot
 	tgBot, err := tb.NewBot(tb.Settings{
-		Token:  cfg.Telegram.BotToken,
+		Token:  cfg.Messengers.Telegram.BotToken,
 		Poller: getTgPoller(),
 	})
 	if err != nil {
