@@ -61,7 +61,7 @@ func main() {
 		Chats:  chats,
 		Callbacks: uchatbot.ChatBotCallbacks{
 			OnContactMessage:        onContactMessage,
-			OnChannelMessage:        b.onChannelMessage,
+			OnChannelMessage:        b.onUtopiaChannelMessage,
 			OnPrivateChannelMessage: onPrivateChannelMessage,
 		},
 		UseErrorCallback: true,
@@ -122,7 +122,7 @@ func (b *bot) onTelegramMessage(c tb.Context) error {
 	return nil
 }
 
-func (b *bot) onChannelMessage(m structs.WsChannelMessage) {
+func (b *bot) onUtopiaChannelMessage(m structs.WsChannelMessage) {
 	chatID, isExists := b.getUtopiaBridge(m.ChannelID)
 	if !isExists {
 		log.Printf("unknown utopia channel ID %v, bridge not found", chatID)
