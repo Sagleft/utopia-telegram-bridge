@@ -34,8 +34,6 @@ func main() {
 			OnContactMessage:        OnContactMessage,
 			OnChannelMessage:        OnChannelMessage,
 			OnPrivateChannelMessage: OnPrivateChannelMessage,
-
-			WelcomeMessage: OnWelcomeMessage,
 		},
 		UseErrorCallback: true,
 		ErrorCallback:    onError,
@@ -54,11 +52,7 @@ func OnChannelMessage(m structs.WsChannelMessage) {
 }
 
 func OnPrivateChannelMessage(m structs.WsChannelMessage) {
-	fmt.Printf("[PRIVATE] %s: %s\n", m.Nick, m.Text)
-}
-
-func OnWelcomeMessage(userPubkey string) string {
-	return fmt.Sprintf("Hello! Your pubkey is %s", userPubkey)
+	fmt.Printf("[PRIVATE] [%s] %s: %s\n", m.ChannelName, m.Nick, m.Text)
 }
 
 func onError(err error) {
