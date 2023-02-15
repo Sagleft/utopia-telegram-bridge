@@ -8,12 +8,15 @@ import (
 	swissknife "github.com/Sagleft/swiss-knife"
 	"github.com/Sagleft/uchatbot-engine"
 	"github.com/Sagleft/utopialib-go/v2/pkg/structs"
+	"github.com/common-nighthawk/go-figure"
 	"github.com/fatih/color"
 	tb "gopkg.in/telebot.v3"
 )
 
 const (
+	previewTitle       = "bridge"
 	configFilePath     = "config.json"
+	previewColor       = "green"
 	longPollerInterval = 15 * time.Second
 )
 
@@ -43,6 +46,9 @@ func (b *bot) setTelegramBot(tgBot *tb.Bot) {
 }
 
 func main() {
+	figure.NewColorFigure(previewTitle, "", previewColor, true).Print()
+	fmt.Println()
+
 	cfg := config{}
 	if err := swissknife.ParseStructFromJSONFile(configFilePath, &cfg); err != nil {
 		color.Red("read config: %s", err.Error())
