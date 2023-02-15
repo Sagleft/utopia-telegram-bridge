@@ -26,11 +26,16 @@ func newBot(cfg config) *bot {
 	}
 
 	for _, r := range cfg.Bridges {
+		log.Printf("build bridge U %q <-> T %v", r.UtopiaChannelID, r.TelegramChatID)
 		b.Bridges.UtopiaToTelegram[r.UtopiaChannelID] = r.TelegramChatID
 		b.Bridges.TelegramToUtopia[r.TelegramChatID] = r.UtopiaChannelID
 	}
 
 	return b
+}
+
+func (b *bot) setChatBot(cb *uchatbot.ChatBot) {
+	b.ChatBot = cb
 }
 
 func main() {
@@ -47,8 +52,7 @@ func main() {
 	for _, r := range cfg.Bridges {
 		chats = append(chats, uchatbot.Chat{ID: r.UtopiaChannelID})
 	}
-
-	_, err := uchatbot.NewChatBot(uchatbot.ChatBotData{
+	cb, err := uchatbot.NewChatBot(uchatbot.ChatBotData{
 		Config: cfg.Messengers.Utopia,
 		Chats:  chats,
 		Callbacks: uchatbot.ChatBotCallbacks{
@@ -62,6 +66,8 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	b.setChatBot(cb)
 
 	// setup telegram bot
 	tgBot, err := tb.NewBot(tb.Settings{
@@ -115,6 +121,8 @@ func (b *bot) sendToTelegram(chatID int64, nickname string, message string) erro
 }
 
 func (b *bot) sendToUtopia(channelID string, nickname string, message string) error {
-	// TODO
-	return nil
+	return b.ChatBot.SendChannelMessage(
+		channelID,
+		fmt.Sprintf("%s: %s", nickname, message),
+	)
 }

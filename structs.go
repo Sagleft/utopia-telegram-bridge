@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/Sagleft/uchatbot-engine"
 	utopiago "github.com/Sagleft/utopialib-go/v2"
 )
 
@@ -29,5 +30,6 @@ type bridges struct {
 }
 
 type bot struct {
+	ChatBot *uchatbot.ChatBot
 	Bridges bridges
 }
