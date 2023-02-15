@@ -7,6 +7,7 @@ require (
 	github.com/Sagleft/uchatbot-engine v1.5.0
 	github.com/Sagleft/utopialib-go/v2 v2.3.0
 	github.com/fatih/color v1.14.1
+	gopkg.in/telebot.v3 v3.1.2
 )
 
 require (
