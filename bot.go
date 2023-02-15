@@ -96,6 +96,11 @@ func (b *bot) getTelegramBridge(chatID int64) (string, bool) {
 	return br, isExists
 }
 
+func (b *bot) getUtopiaBridge(channelID string) (int64, bool) {
+	br, isExists := b.Bridges.UtopiaToTelegram[channelID]
+	return br, isExists
+}
+
 func (b *bot) onTelegramMessage(c tb.Context) error {
 	var (
 		user   = c.Sender()
@@ -118,7 +123,15 @@ func (b *bot) onTelegramMessage(c tb.Context) error {
 }
 
 func (b *bot) onChannelMessage(m structs.WsChannelMessage) {
-	fmt.Printf("[CHANNEL] %s: %s\n", m.Nick, m.Text)
+	chatID, isExists := b.getUtopiaBridge(m.ChannelID)
+	if !isExists {
+		log.Printf("unknown utopia channel ID %v, bridge not found", chatID)
+		return
+	}
+
+	if err := b.sendToTelegram(chatID, m.Nick, m.Text); err != nil {
+		color.Red("send message to telegram: %s", err.Error())
+	}
 }
 
 func (b *bot) sendToTelegram(chatID int64, nickname string, message string) error {
