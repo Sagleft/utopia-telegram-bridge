@@ -7,7 +7,6 @@ import (
 
 	swissknife "github.com/Sagleft/swiss-knife"
 	"github.com/Sagleft/uchatbot-engine"
-	utopiago "github.com/Sagleft/utopialib-go/v2"
 	"github.com/Sagleft/utopialib-go/v2/pkg/structs"
 	"github.com/fatih/color"
 	tb "gopkg.in/telebot.v3"
@@ -18,21 +17,20 @@ const (
 	longPollerInterval = 15 * time.Second
 )
 
-type config struct {
-	Utopia   utopiago.Config `json:"utopia"`
-	Telegram telegramConfig  `json:"telegram"`
+func newBot(cfg config) *bot {
+	b := &bot{
+		Redirects: redirector{
+			UtopiaToTelegram: make(map[string]int64),
+			TelegramToUtopia: make(map[int64]string),
+		},
+	}
 
-	Chats     []uchatbot.Chat `json:"chats"`
-	Redirects []redirect      `json:"redirects"`
-}
+	for _, r := range cfg.Redirects {
+		b.Redirects.UtopiaToTelegram[r.UtopiaChannelID] = r.TelegramChatID
+		b.Redirects.TelegramToUtopia[r.TelegramChatID] = r.UtopiaChannelID
+	}
 
-type redirect struct {
-	UtopiaChannelID string `json:"utopiaChannelID"`
-	TelegramChatID  int64  `json:"telegramChatID"`
-}
-
-type telegramConfig struct {
-	BotToken string `json:"botToken"`
+	return b
 }
 
 func main() {
@@ -42,14 +40,16 @@ func main() {
 		return
 	}
 
+	b := newBot(cfg)
+
 	// setup utopia bot
 	_, err := uchatbot.NewChatBot(uchatbot.ChatBotData{
 		Config: cfg.Utopia,
 		Chats:  cfg.Chats,
 		Callbacks: uchatbot.ChatBotCallbacks{
-			OnContactMessage:        OnContactMessage,
-			OnChannelMessage:        OnChannelMessage,
-			OnPrivateChannelMessage: OnPrivateChannelMessage,
+			OnContactMessage:        onContactMessage,
+			OnChannelMessage:        b.onChannelMessage,
+			OnPrivateChannelMessage: onPrivateChannelMessage,
 		},
 		UseErrorCallback: true,
 		ErrorCallback:    onError,
@@ -59,30 +59,28 @@ func main() {
 	}
 
 	// setup telegram bot
-	b, err := tb.NewBot(tb.Settings{
+	tgBot, err := tb.NewBot(tb.Settings{
 		Token:  cfg.Telegram.BotToken,
 		Poller: getTgPoller(),
 	})
 	if err != nil {
 		log.Fatalf("create tg bot: %v", err)
 	}
-	go b.Start()
+	go tgBot.Start()
 
 	swissknife.RunInBackground()
 }
 
-func OnContactMessage(m structs.InstantMessage) {
-	fmt.Printf("[CONTACT] %s: %s\n", m.Nick, m.Text)
-}
-
-func OnChannelMessage(m structs.WsChannelMessage) {
+func (b *bot) onChannelMessage(m structs.WsChannelMessage) {
 	fmt.Printf("[CHANNEL] %s: %s\n", m.Nick, m.Text)
 }
 
-func OnPrivateChannelMessage(m structs.WsChannelMessage) {
-	fmt.Printf("[PRIVATE] [%s] %s: %s\n", m.ChannelName, m.Nick, m.Text)
+func (b *bot) sendToTelegram(chatID int64, nickname string, message string) error {
+	// TODO
+	return nil
 }
 
-func onError(err error) {
-	color.Red(err.Error())
+func (b *bot) sendToUtopia(channelID string, nickname string, message string) error {
+	// TODO
+	return nil
 }
