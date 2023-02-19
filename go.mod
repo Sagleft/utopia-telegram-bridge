@@ -3,7 +3,7 @@ module bot
 go 1.18
 
 require (
-	github.com/Sagleft/swiss-knife v1.2.1
+	github.com/Sagleft/swiss-knife v1.3.0
 	github.com/Sagleft/uchatbot-engine v1.5.2
 	github.com/Sagleft/utopialib-go/v2 v2.3.0
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be

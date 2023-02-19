@@ -8,15 +8,14 @@ import (
 	swissknife "github.com/Sagleft/swiss-knife"
 	"github.com/Sagleft/uchatbot-engine"
 	"github.com/Sagleft/utopialib-go/v2/pkg/structs"
-	"github.com/common-nighthawk/go-figure"
 	"github.com/fatih/color"
 	tb "gopkg.in/telebot.v3"
 )
 
 const (
-	previewTitle       = "bridge"
+	appName            = "bridge"
 	configFilePath     = "config.json"
-	previewColor       = "green"
+	donateAddress      = "F50AF5410B1F3F4297043F0E046F205BCBAA76BEC70E936EB0F3AB94BF316804"
 	longPollerInterval = 15 * time.Second
 )
 
@@ -29,7 +28,7 @@ func newBot(cfg config) *bot {
 	}
 
 	for _, r := range cfg.Bridges {
-		log.Printf("build bridge U %q <-> T %v", r.UtopiaChannelID, r.TelegramChatID)
+		log.Printf("init bridge U %q <-> T %v", r.UtopiaChannelID, r.TelegramChatID)
 		b.Bridges.UtopiaToTelegram[r.UtopiaChannelID] = r.TelegramChatID
 		b.Bridges.TelegramToUtopia[r.TelegramChatID] = r.UtopiaChannelID
 	}
@@ -46,8 +45,7 @@ func (b *bot) setTelegramBot(tgBot *tb.Bot) {
 }
 
 func main() {
-	figure.NewColorFigure(previewTitle, "", previewColor, true).Print()
-	fmt.Println()
+	swissknife.PrintIntroMessage(appName, donateAddress)
 
 	cfg := config{}
 	if err := swissknife.ParseStructFromJSONFile(configFilePath, &cfg); err != nil {

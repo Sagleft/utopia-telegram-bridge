@@ -58,8 +58,8 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
-github.com/Sagleft/swiss-knife v1.2.1 h1:zTs9C+UPoTsXymHw8glYBqAdH/KH8a4ire+U3yAqhf0=
-github.com/Sagleft/swiss-knife v1.2.1/go.mod h1:qPlA/Y53sIYAyJI+E3StPw3vNSy9rzxAeh03oemFM9g=
+github.com/Sagleft/swiss-knife v1.3.0 h1:d9Fl9IEPvCgYZhAGeu0R5A6QirGFwM2PST37LLJjXOc=
+github.com/Sagleft/swiss-knife v1.3.0/go.mod h1:Zw4i+m87cG3p8NJjqlW1uz6+P2VycFl5ssVt2VfCITM=
 github.com/Sagleft/uchatbot-engine v1.5.2 h1:/Bq7+TU2OzJZtcrnonkAgiNsHTome6UprbVpp5lPbDI=
 github.com/Sagleft/uchatbot-engine v1.5.2/go.mod h1:QrSY84Q8qmCaJdw7gt+UP12RWdFfVBO3JcI5tVTEZIU=
 github.com/Sagleft/utopialib-go/v2 v2.3.0 h1:bVgspeCLYI/7PIqnTJknXW8bYF4IXLLCzVk2QkTrocA=
