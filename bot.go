@@ -13,9 +13,12 @@ import (
 )
 
 const (
-	appName            = "bridge"
-	configFilePath     = "config.json"
-	donateAddress      = "F50AF5410B1F3F4297043F0E046F205BCBAA76BEC70E936EB0F3AB94BF316804"
+	appName        = "bridge"
+	configFilePath = "config.json"
+	donateAddress  = "F50AF5410B1F3F4297043F0E046F205BCBAA76BEC70E936EB0F3AB94BF316804"
+	welcomeMsg     = "Hello. I'm just a bot that transfers messages between messengers.\n\n" +
+		"By the way, subscribe to my developer channel?\n" +
+		"7A9F4A0B5B99B61F45E1652560DCF12C"
 	longPollerInterval = 15 * time.Second
 )
 
@@ -67,6 +70,7 @@ func main() {
 			OnContactMessage:        onContactMessage,
 			OnChannelMessage:        b.onUtopiaChannelMessage,
 			OnPrivateChannelMessage: onPrivateChannelMessage,
+			WelcomeMessage:          getWelcomeMessage,
 		},
 		UseErrorCallback: true,
 		ErrorCallback:    onError,
@@ -93,6 +97,10 @@ func main() {
 
 	log.Println("bot started")
 	swissknife.RunInBackground()
+}
+
+func getWelcomeMessage(_ string) string {
+	return welcomeMsg
 }
 
 func (b *bot) getTelegramBridge(chatID int64) (string, bool) {
@@ -151,4 +159,9 @@ func (b *bot) sendToUtopia(channelID string, nickname string, message string) er
 		channelID,
 		fmt.Sprintf("%s: %s", nickname, message),
 	)
+}
+
+func (b *bot) fixAccountName() error {
+	// TODO
+	return nil
 }

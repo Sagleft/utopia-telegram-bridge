@@ -60,10 +60,10 @@ github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/Sagleft/swiss-knife v1.3.0 h1:d9Fl9IEPvCgYZhAGeu0R5A6QirGFwM2PST37LLJjXOc=
 github.com/Sagleft/swiss-knife v1.3.0/go.mod h1:Zw4i+m87cG3p8NJjqlW1uz6+P2VycFl5ssVt2VfCITM=
-github.com/Sagleft/uchatbot-engine v1.5.2 h1:/Bq7+TU2OzJZtcrnonkAgiNsHTome6UprbVpp5lPbDI=
-github.com/Sagleft/uchatbot-engine v1.5.2/go.mod h1:QrSY84Q8qmCaJdw7gt+UP12RWdFfVBO3JcI5tVTEZIU=
-github.com/Sagleft/utopialib-go/v2 v2.3.0 h1:bVgspeCLYI/7PIqnTJknXW8bYF4IXLLCzVk2QkTrocA=
-github.com/Sagleft/utopialib-go/v2 v2.3.0/go.mod h1:9HuTLrcyVlaNIW3Vw4FCMrlOFt2fJ0ZI8WBOk5+2e6M=
+github.com/Sagleft/uchatbot-engine v1.6.0 h1:p0hdn8/L3KEPhM0bwfvkIU4CDQbHMKiey5Z8Qpt3T+0=
+github.com/Sagleft/uchatbot-engine v1.6.0/go.mod h1:8IdHzeijmbs6PG0J2AZsJqeHX/1haLBBEm2ARO8SPOY=
+github.com/Sagleft/utopialib-go/v2 v2.4.0 h1:XvxEXEFB/Gopd/qkGsqSWE9HlBioP0qruFBeJ/LBzEo=
+github.com/Sagleft/utopialib-go/v2 v2.4.0/go.mod h1:9HuTLrcyVlaNIW3Vw4FCMrlOFt2fJ0ZI8WBOk5+2e6M=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf/go.mod h1:ybxpYRFXyAe+OPACYpWeL0wqObRcbAqCMya13uyzqw0=
