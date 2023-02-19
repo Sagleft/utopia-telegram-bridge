@@ -3,7 +3,7 @@
 
 Bot for transferring chat messages between messengers (Utopia, Telegram)
 
-:arrow_down: The finished compiled version can be found on the [releases](releases) page.
+The finished compiled version can be found on the :arrow_down: [releases](releases) page.
 
 # :robot: use cases
 
