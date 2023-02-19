@@ -13,12 +13,16 @@ import (
 )
 
 const (
-	appName        = "bridge"
-	configFilePath = "config.json"
-	donateAddress  = "F50AF5410B1F3F4297043F0E046F205BCBAA76BEC70E936EB0F3AB94BF316804"
-	welcomeMsg     = "Hello. I'm just a bot that transfers messages between messengers.\n\n" +
+	appName            = "bridge"
+	configFilePath     = "config.json"
+	defaultAccountName = "account.db"
+	botNickname        = "uBridge"
+
+	donateAddress = "F50AF5410B1F3F4297043F0E046F205BCBAA76BEC70E936EB0F3AB94BF316804"
+	welcomeMsg    = "Hello. I'm just a bot that transfers messages between messengers.\n\n" +
 		"By the way, subscribe to my developer channel?\n" +
 		"7A9F4A0B5B99B61F45E1652560DCF12C"
+
 	longPollerInterval = 15 * time.Second
 )
 
@@ -85,11 +89,15 @@ func main() {
 		Poller: getTgPoller(),
 	})
 	if err != nil {
-		log.Fatalf("create tg bot: %v", err)
+		log.Fatalf("create tg bot: %s", err.Error())
 	}
 
 	b.setChatBot(cb)
 	b.setTelegramBot(tgBot)
+
+	if err := b.fixAccountName(); err != nil {
+		log.Fatalf("fix nickname: %s", err.Error())
+	}
 
 	tgBot.Handle(tb.OnText, b.onTelegramMessage)
 
@@ -162,6 +170,15 @@ func (b *bot) sendToUtopia(channelID string, nickname string, message string) er
 }
 
 func (b *bot) fixAccountName() error {
-	// TODO
+	data, err := b.ChatBot.GetOwnContact()
+	if err != nil {
+		return fmt.Errorf("get own contact: %w", err)
+	}
+
+	if data.Nick == defaultAccountName {
+		if err := b.ChatBot.SetAccountNickname(botNickname); err != nil {
+			return fmt.Errorf("set account nickname: %w", err)
+		}
+	}
 	return nil
 }
