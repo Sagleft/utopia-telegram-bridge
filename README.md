@@ -67,6 +67,12 @@ To start the bot:
 ./bot
 ```
 
+## cross-platform build
+
+```bash
+bash build.sh
+```
+
 # :information_source: useful links
 
 * [How to get the API key U manually](https://udocs.gitbook.io/utopia-api/utopia-api/how-to-enable-api-access)
