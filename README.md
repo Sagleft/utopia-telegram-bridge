@@ -3,7 +3,7 @@
 
 Bot for transferring chat messages between messengers (Utopia, Telegram)
 
-The finished compiled version can be found on the :arrow_down: [releases](releases) page.
+The finished compiled version can be found on the :arrow_down: [https://github.com/Sagleft/utopia-telegram-bridge/releases](releases) page.
 
 # :robot: use cases
 
