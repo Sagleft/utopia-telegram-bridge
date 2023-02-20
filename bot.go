@@ -128,6 +128,11 @@ func (b *bot) onTelegramMessage(c tb.Context) error {
 		chatID = c.Chat().ID
 	)
 
+	text = basicAntispam(text)
+	if text == "" {
+		return nil
+	}
+
 	uChannelID, isExists := b.getTelegramBridge(chatID)
 	if !isExists {
 		log.Printf("unknown telegram chat ID %v, bridge not found", chatID)
@@ -149,7 +154,12 @@ func (b *bot) onUtopiaChannelMessage(m structs.WsChannelMessage) {
 		return
 	}
 
-	if err := b.sendToTelegram(chatID, m.Nick, m.Text); err != nil {
+	message := basicAntispam(m.Text)
+	if message == "" {
+		return
+	}
+
+	if err := b.sendToTelegram(chatID, m.Nick, message); err != nil {
 		color.Red("send message to telegram: %s", err.Error())
 	}
 }

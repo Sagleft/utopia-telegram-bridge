@@ -53,3 +53,11 @@ func getTelegramNickname(user *tb.User) string {
 
 	return "anonymos"
 }
+
+func basicAntispam(message string) string {
+	if message == "Hi" || message == "Hello" || message == "Hilo" {
+		return ""
+	}
+
+	return message
+}
