@@ -78,3 +78,6 @@ bash build.sh
 * [How to get the API key U manually](https://udocs.gitbook.io/utopia-api/utopia-api/how-to-enable-api-access)
 * [Forum thread](https://talk.u.is/viewtopic.php?pid=5253)
 * [UDocs](https://udocs.gitbook.io/utopia-api/)
+
+---
+[![udocs](https://github.com/Sagleft/ures/blob/master/udocs-btn.png?raw=true)](https://udocs.gitbook.io/utopia-api/)
